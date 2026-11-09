@@ -1,6 +1,10 @@
 """Tests for Task 1: Text Cleaning and Tokenization."""
 import pytest
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from src.task1_text_cleaning import clean_and_tokenize
+
 
 
 def test_clean_and_tokenize_basic():

@@ -33,7 +33,28 @@ def train_word2vec(
         >>> 'nlp' in model.wv
         True
     """
-    pass
+
+    if not isinstance(sentences, list):
+        raise TypeError("Sentences must be a list")
+
+    if not sentences:
+        raise ValueError("Sentences cannot be empty")
+
+    for sentence in sentences:
+        if not isinstance(sentence, list):
+            raise TypeError("Sentences must be a list of lists")
+        if not sentence:
+            raise ValueError("Sentences cannot contain empty lists")
+        if any(not isinstance(word, str) for word in sentence):
+            raise ValueError("All tokens in sentences must be strings")
+
+    model = Word2Vec(
+        sentences=sentences,
+        vector_size=vector_size,
+        window=window,
+        min_count=min_count,
+        workers=workers
+    )
     return model
 
 
@@ -61,17 +82,22 @@ def find_similar_words(model: Word2Vec, word: str, topn: int = 10) -> List[Tuple
         >>> len(similar) <= 2
         True
     """
-    pass
+
+    if not isinstance(model, Word2Vec):
+        raise TypeError("Model must be an instance of Word2Vec")
+    if not isinstance(word, str):
+        raise TypeError("Word must be a string")
+
+    if word not in model.wv:
+        raise KeyError(f"Word '{word}' is not in vocabulary")
 
     return model.wv.most_similar(word, topn=topn)
 
 
 if __name__ == "__main__":
-    # Download required NLTK resources (only when running as main)
     import nltk
     nltk.download('punkt', quiet=True)
 
-    # Define example sentences
     example_sentences = [
         ['i', 'love', 'nlp'],
         ['nlp', 'is', 'fun'],
@@ -81,10 +107,8 @@ if __name__ == "__main__":
         ['artificial', 'intelligence', 'is', 'related', 'to', 'nlp']
     ]
 
-    # Train Word2Vec model on the sentences
     model = train_word2vec(example_sentences)
 
-    # Find and display similar words
     similar_words = find_similar_words(model, 'nlp')
     print("Words similar to 'nlp':")
     for word, score in similar_words:

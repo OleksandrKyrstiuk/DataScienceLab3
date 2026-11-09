@@ -1,5 +1,8 @@
 """Tests for Task 5: Word2Vec Model Training."""
 import pytest
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from gensim.models import Word2Vec
 from src.task5_word2vec import find_similar_words, train_word2vec
 

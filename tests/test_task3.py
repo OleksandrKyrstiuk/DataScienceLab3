@@ -1,6 +1,9 @@
 """Tests for Task 3: Bag of Words (BoW) Implementation."""
 import pytest
 import pandas as pd
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from src.task3_BoW import bag_of_words
 
 

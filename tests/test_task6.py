@@ -1,5 +1,8 @@
 """Tests for Task 6: N-gram Generation and Frequency Counting."""
 import pytest
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from src.task6_Ngrams import count_ngrams, generate_ngrams
 
 

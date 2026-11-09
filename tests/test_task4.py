@@ -1,6 +1,9 @@
 """Tests for Task 4: TF-IDF Calculation."""
 import pytest
 import pandas as pd
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from src.task4_TFIDF import calculate_tfidf
 
 

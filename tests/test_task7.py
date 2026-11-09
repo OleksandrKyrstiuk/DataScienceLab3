@@ -2,6 +2,9 @@
 import pytest
 import pandas as pd
 import numpy as np
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from gensim.models import Word2Vec
 
 from src.task7_nlp_pipeline import (
